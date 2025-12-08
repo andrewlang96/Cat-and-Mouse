@@ -9,13 +9,12 @@ import platform
 
 class Chase:
     """
-    Takes the initial positions of the the chaser and the runner and computes
-    the dynamic variables of the chase which are the angles between vectors,
-    distances between chaser and runner, and velocities of chaser and runner.
+    Takes the initial positions of the the cat and the mouse and computes
+    the dynamic variables of the chase which are the angles between velocity vectors,
+    distances between cat and mouse, and velocities of cat and mouse.
 
-    cp: ndarray. A vector for the chasers starting position in the chase space
-    rp: ndarray. A vector for the runner starting position in the chase space
-    random: Bool. If true,  the start positions will be asigned at random
+    cp: ndarray. A vector for the catss starting position in the chase space
+    rp: ndarray. A vector for the mouse starting position in the chase space
     span: Int. A number representing the upper limits of each component of the chase space.
 
     **all arrays must be of the same length
@@ -28,7 +27,7 @@ class Chase:
 
     def get_rv(self):
         """
-        Gives a random runner velocity
+        Gives a random mouse velocity
         """
         components = [random.randint(-50, 50) for i in range(self.dim)]
         if np.linalg.norm(np.array(components)) != 0: #Check for zero vector to prevent zero division error
@@ -79,7 +78,7 @@ class Chase:
         combo_list = []
         dim_lables = ["a", "a", "b", "b", "c", "c", "d", "d", "e"
         , "e", "f", "f", "g", "g", "h", "h", "i", "i", "j", "j", "k", "k", "l", "l", "m", "m", "n", "n", "o", "o", #This is a list of lables for the grah and it is not a good way of doing it
-                      "p", "p", "q", "q", "r", "r", "s", "s", "t", "t", "u", "u", "v", "v"]
+        "p", "p", "q", "q", "r", "r", "s", "s", "t", "t", "u", "u", "v", "v", "w", "w", "x", "x", "y", "y", "z", "z"]
         for i in range(len(a)):
             combo_list.append(a[i])
             combo_list.append(b[i])
@@ -97,8 +96,9 @@ class Chase:
         Back.BLUE + Fore.WHITE + "     Cat    ", Style.RESET_ALL, "   ",
         Back.GREEN + "     Mouse    ", Style.RESET_ALL, "\n") #Header
         combo_list = []
-        dim_lables = ["a", "a", "b", "b", "c", "c", "d", "d", "e", "e", "f", "f", "g", "g", "h", "h", #This is a list of lables for the grah and it is not a good way of doing it
-                      "i", "i", "j", "j", "k", "k", "l", "l", "m", "m", "n", "n", "o", "o", "p", "p"]
+        dim_lables = ["a", "a", "b", "b", "c", "c", "d", "d", "e"
+            , "e", "f", "f", "g", "g", "h", "h", "i", "i", "j", "j", "k", "k", "l", "l", "m", "m", "n", "n", "o", "o",
+            "p", "p", "q", "q", "r", "r", "s", "s", "t", "t", "u", "u", "v", "v", "w", "w", "x", "x", "y", "y", "z", "z"]
         for i in a:
             if i > 0:
                 bar = [">" for n in range(round(i))]
@@ -216,30 +216,27 @@ def main():
     # chase1 = Chase([50, -20, 44, -30, 18, -44, 22, -21, 33], [-40, 40, -23, 27, -44, 8, -27, 27, -18], span = 60)
     # chase1.chase_loop(vis=True, rundown=True)
 
+    aux_chase = Chase(cp=[0], rp=[0])
+    rundown = {"y": True, "n": False}
     while True:
-        print("\n\n")
-        initial_cat_location = input("Enter the starting position of the cat\n as a comma serperated list of integers between -50 and 50: ")
-        initial_mouse_location = input("Enter the starting position of the mouse\n as a comma serperated list of integers between -50 and 50: ")
-        initial_cat_location = initial_cat_location.split(",")
-        initial_mouse_location = initial_mouse_location.split(",")
-        initial_cat_location = [int(i.strip()) for i in initial_cat_location]
-        initial_mouse_location = [int(i.strip()) for i in initial_mouse_location]
-        if len(initial_cat_location) != len(initial_mouse_location):
-            print(f"{Fore.RED}!!Starting cat and mouse positions must consist of equal number of components!!{Style.RESET_ALL}")
-        else:
+        aux_chase.clear()
+        dimensionality = input("Enter the number of dimensions[1-6]: ")
+        try:
+            dimensionality = int(dimensionality)
             break
+        except ValueError:
+            continue
     while True:
-        run = {"y": True,
-                "n": False}
-        rundown = input("Rundown? [y/n]: ")
-        if rundown not in ["y", "n"]:
-            print("Answer with y or n\n")
-        else:
-            rundown = run[rundown]
+        aux_chase.clear()
+        rd = input("Straight line path?[y/n]: ")
+        if rd in ["y", "n"]:
+            aux_chase.clear()
             break
-    chase = Chase(initial_cat_location, initial_mouse_location)
-    chase.clear()
-    chase.chase_loop(vis=True, rundown=rundown)
+    cat_position = [random.randint(-50, 50) for i in range(dimensionality)]
+    mouse_position = [random.randint(-50, 50) for i in range(dimensionality)]
+    chase = Chase(cp=cat_position, rp=mouse_position, )
+    chase.chase_loop(vis=True, rundown=rundown[rd])
+
 
 
 
