@@ -6,3 +6,4 @@ This program models the positions of a ***cat*** and a ***mouse*** as one chases
 1. If the mouse's velocity has no component in the direction of the cat, the the cat's velocity is equal to the mouse's velocity. In other words, if the mouse is not moving at all towards the cat, the the cat parallels the mouses path.
 2. If the mouse's velocity has any component in the direction of the cat, the cat's velocity is the unit vetor that extens from that cats current position to the point `[mp + (|d|mv/2cosθ)]` where **mp** is the mouse's position vector, **d** is the vector that extends from the mouse's position to the cat's position, **mv** is the unit vector that represents the mouses velocity, and θ is the angle between **mv** and **d**. In other words, if the mouse is moving at all toward the cat, the cat takes the path that would intersect the mouse if it were to continue along its current path.
 
+
