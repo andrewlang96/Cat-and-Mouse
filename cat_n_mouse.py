@@ -232,8 +232,8 @@ def main():
         if rd in ["y", "n"]:
             aux_chase.clear()
             break
-    cat_position = [random.randint(-50, 50) for i in range(dimensionality)]
-    mouse_position = [random.randint(-50, 50) for i in range(dimensionality)]
+    cat_position = [random.randint(-60, 60) for i in range(dimensionality)]
+    mouse_position = [random.randint(-60, 60) for i in range(dimensionality)]
     chase = Chase(cp=cat_position, rp=mouse_position, )
     chase.chase_loop(vis=True, rundown=rundown[rd])
 
