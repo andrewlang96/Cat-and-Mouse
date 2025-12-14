@@ -1,5 +1,5 @@
 ## Cat and Mouse
-This project is an examination of the concepts of distance and direction and how these concepts can extend beyond our intuitive understandings in 2 and 3 dimensions. 
+This project is an examination of the concepts of distance and direction and how these concepts extend beyond our intuitive understandings in 2 and 3 dimensions. 
 ![4-d chase gif](assets/demo.gif)
 ### Description
 This program models the positions of a ***cat*** and a ***mouse*** as one chases the other through an **n**-dimensional space. As it so happens, this cat can only run exactly as fast as the mouse, and must therefore employ a clever tactic if it wishes to catch the mouse. As the cat is chasing the mouse, it follows two simple rules to determine what path it will take.
@@ -42,3 +42,4 @@ After the simulation several metrics are displayed below the graph
 * `n` - The total distance traveled by the cat as it chased the mouse. Note that if the mouse stayed still, this would be equal to the initial distance.
 * `dim` - The number of dimensions of the chase.
 * `Average Rate of Closure` - This value is the **initial distance** divided by **n**. Because the cats velocity is a unit vector, this value represents the average rate at which the cat closed the gap between it and the mouse. If the mouse were standing still this value would be one. An interesting question may be how this value varies as a function of the initial distance and the dimensionality of the chase.
+
